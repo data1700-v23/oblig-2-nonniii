@@ -5,10 +5,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-
+import java.util.ArrayList;
 import java.util.List;
+
 @RestController
-@RequestMapping("/api/kinobilletter")
+
+@RequestMapping("/")
 public class BillettController {
 
     @Autowired
@@ -17,10 +19,12 @@ public class BillettController {
     /*Lagre: tar imot en Kinobilletter-objekt og legger den til i databasen vha.
     BillettRepository-objektet.
      */
-    @PostMapping("/bestill")
+ @PostMapping("/bestill")
     public void lagre(@RequestBody Kinobilletter billett) {
         repository.leggTilBillett(billett);
     }
+
+
     /*
     Henter alle kinobillettene fra databasen vha. BillettRepository og returnerer
     dem som en liste.
@@ -34,11 +38,13 @@ public class BillettController {
     Sletter alle kinobillettene fra databasen vha. BillettRepository.
      */
 
-    @DeleteMapping("/slett")
+  @DeleteMapping("/slett")
     public void slett() {
         repository.slettAlleBilletter();
     }
 }
+
+
 
 
 

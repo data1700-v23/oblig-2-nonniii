@@ -1,6 +1,7 @@
 $(() => {
     // Legger til en klikk-handler for kjøp billett-knappen
-    $("#kjopBillett").click(() => {
+    $("#kjopBillett").click(function() {
+        console.log("click handler running");
         // Henter alle input-feltene og validerer verdien
         const film = $("#film").val();
         const antall = $("#antall").val();
@@ -55,24 +56,14 @@ $(() => {
         if (valid) {
             const billett = {
                 film: film,
-                antall: antall,
+                antall: parseInt(antall),
                 fornavn: fornavn,
                 etternavn: etternavn,
                 telefonnr: telefonnr,
                 epost: epost
             };
 
-            const billettHTML = "<li>" + billett.antall + " billett(er) for " + billett.film + " på navn: " + billett.fornavn + " " + billett.etternavn + " (" + billett.telefonnr + ", " + billett.epost + ")" + " <button class='slettBillett'>Slett</button></li>";
-
-            $("#kinobilletter").append(billettHTML);
-
-            // Nullstiller feltene
-            $("#film").val("Ant-Man");
-            $("#antall").val("");
-            $("#fornavn").val("");
-            $("#etternavn").val("");
-            $("#telefonnr").val("");
-            $("#epost").val("");
+            bestill(billett)
         }
     });
 
@@ -81,4 +72,41 @@ $(() => {
         $("#kinobilletter").empty();
     });
 });
+
+const bestill = (billett) => {
+    /* $.post("/bestill", billett, () => bestillSuksess()); */
+    $.ajax("/bestill", {
+        type:"POST",
+        data: billett,
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+        success: () => bestillSuksess()
+    })
+}
+
+const bestillSuksess = () => {
+    console.log("bestill suksess is running")
+
+    hentAlleBilletter();
+
+    // Nullstiller feltene
+    $("#film").val("Ant-Man");
+    $("#antall").val("");
+    $("#fornavn").val("");
+    $("#etternavn").val("");
+    $("#telefonnr").val("");
+    $("#epost").val("");
+}
+
+function hentAlleBilletter() {
+    $.get( "/hent", function( billetter ) {
+        billetter.forEach((billett) => {
+            const billettHTML = "<li>" + billett.antall + " billett(er) for " + billett.film + " på navn: " + billett.fornavn + " " + billett.etternavn + " (" + billett.telefonnr + ", " + billett.epost + ")" + " <button class='slettBillett'>Slett</button></li>";
+
+            $("#kinobilletter").append(billettHTML);
+        });
+    });
+}
+
+
 
