@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Kinobilletter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="index.js"></script>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 mb-5">
+            <h1>Bestilling av kinobilletter</h1>
+            <form>
+                <div class="form-group">
+                    <label for="film">Film</label>
+                    <select class="form-control" id="film">
+                        <option>Ant-Man</option>
+                        <option>Black Panther</option>
+                        <option>Doctor Strange</option>
+                        <option>Spider-Man: Homecoming</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="antall">Antall billetter (maks 10)</label>
+                    <input type="number" class="form-control" id="antall" min="1" max="10">
+                    <small id="antall-error" class="text-danger"></small>
+                </div>
+                <div class="form-group">
+                    <label for="fornavn">Fornavn</label>
+                    <input type="text" class="form-control" id="fornavn">
+                    <small id="fornavn-error" class="text-danger"></small>
+                </div>
+                <div class="form-group">
+                    <label for="etternavn">Etternavn</label>
+                    <input type="text" class="form-control" id="etternavn">
+                    <small id="etternavn-error" class="text-danger"></small>
+                </div>
+                <div class="form-group">
+                    <label for="telefonnr">Telefonnummer (8 siffer)</label>
+                    <input type="tel" class="form-control" id="telefonnr" pattern="[0-9]{8}">
+                    <small id="telefonnr-error" class="text-danger"></small>
+                </div>
+                <div class="form-group">
+                    <label for="epost">E-post</label>
+                    <input type="email" class="form-control" id="epost">
+                    <small id="epost-error" class="text-danger"></small>
+                </div>
+                <button type="button" class="btn btn-primary" id="kjopBillett">Kjøp billett</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h3>Kinobilletter</h3>
+            <div id="kino"></div>
+            <button class="btn btn-danger mt-3" id="slettAlleBilletter">Slett alle billetter</button>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
+
