@@ -16,33 +16,24 @@ public class BillettController {
     @Autowired
     BillettRepository repository;
 
-    /*Lagre: tar imot en Kinobilletter-objekt og legger den til i databasen vha.
-    BillettRepository-objektet.
-     */
- @PostMapping("/bestill")
-    public void lagre(@RequestBody Kinobilletter billett) {
-        repository.leggTilBillett(billett);
+
+    @PostMapping("/kinobillett")
+    public void lagre(Kinobilletter kinobilletter){
+     repository.leggInn(kinobilletter);
+    }
+    @GetMapping("/kinobillett")
+    public ArrayList<Kinobilletter> hent() {
+     return repository.hentAlle();
     }
 
-
-    /*
-    Henter alle kinobillettene fra databasen vha. BillettRepository og returnerer
-    dem som en liste.
-     */
-    @GetMapping("/hent")
-    public List<Kinobilletter> hent() {
-        return repository.hentAlleBilletter();
-    }
-
-    /*
-    Sletter alle kinobillettene fra databasen vha. BillettRepository.
-     */
-
-  @DeleteMapping("/slett")
-    public void slett() {
-        repository.slettAlleBilletter();
-    }
+    @DeleteMapping("/kinobillett")
+   public void slett() {
+ repository.slettAlle();
+ }
 }
+
+
+
 
 
 

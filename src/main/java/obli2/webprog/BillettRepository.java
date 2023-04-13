@@ -8,24 +8,23 @@ import java.util.List;
 
 @Repository
 public class BillettRepository {
-    private List<Kinobilletter> billetter;
 
-    public BillettRepository() {
-        this.billetter = new ArrayList<>();
+    private final ArrayList<Kinobilletter> billettListe = new ArrayList<>();
+
+    public void leggInn(Kinobilletter kinobilletter) {
+        billettListe.add(kinobilletter);
     }
 
-    public void leggTilBillett(Kinobilletter billett) {
-        billetter.add(billett);
+    public ArrayList<Kinobilletter> hentAlle() {
+        return billettListe;
     }
-
-    public List<Kinobilletter> hentAlleBilletter() {
-        return billetter;
+    public void slettAlle() {
+    billettListe.clear();
     }
-
-    public void slettAlleBilletter() {
-        billetter.clear();
-    }
-
 }
+
+
+
+
 
 

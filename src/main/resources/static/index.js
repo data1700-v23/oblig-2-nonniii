@@ -56,7 +56,7 @@ $(() => {
         if (valid) {
             const billett = {
                 film: film,
-                antall: parseInt(antall),
+                antall: antall,
                 fornavn: fornavn,
                 etternavn: etternavn,
                 telefonnr: telefonnr,
@@ -68,7 +68,7 @@ $(() => {
     });
 
     // Legger til en klikk-handler for å slette alle billetter
-    $("#slettAlleBilletter").click(() => {
+    $("#slettAller").click(() => {
         $("#kinobilletter").empty();
     });
 });
@@ -98,7 +98,7 @@ const bestillSuksess = () => {
     $("#epost").val("");
 }
 
-function hentAlleBilletter() {
+function hentAlle() {
     $.get( "/hent", function( billetter ) {
         billetter.forEach((billett) => {
             const billettHTML = "<li>" + billett.antall + " billett(er) for " + billett.film + " på navn: " + billett.fornavn + " " + billett.etternavn + " (" + billett.telefonnr + ", " + billett.epost + ")" + " <button class='slettBillett'>Slett</button></li>";
@@ -107,6 +107,8 @@ function hentAlleBilletter() {
         });
     });
 }
+
+
 
 
 

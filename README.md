@@ -16,8 +16,7 @@ i en database.
 Administratoren kan se en oversikt over
 alle billetter som er bestilt, og har 
 muligheten til å slette billetter. 
-*En stor feil i koden her: klarer ikke
-å lagre bestillingen. 
+ 
 
 HTML-kode: inneholder form for å legge til
 billetter, samt styling av nettsiden.
