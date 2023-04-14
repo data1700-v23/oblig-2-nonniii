@@ -74,20 +74,20 @@ $(() => {
 });
 
 const bestill = (billett) => {
-    /* $.post("/bestill", billett, () => bestillSuksess()); */
-    $.ajax("/bestill", {
+     $.post("/bestill", billett, () => bestillSuksess());
+    /*$.ajax("/bestill", {
         type:"POST",
         data: billett,
         contentType:"application/json; charset=utf-8",
         dataType:"json",
         success: () => bestillSuksess()
-    })
+    })*/
 }
 
 const bestillSuksess = () => {
     console.log("bestill suksess is running")
 
-    hentAlleBilletter();
+    hentAlle();
 
     // Nullstiller feltene
     $("#film").val("Ant-Man");
@@ -99,11 +99,12 @@ const bestillSuksess = () => {
 }
 
 function hentAlle() {
-    $.get( "/hent", function( billetter ) {
+    $.get( "/hentalle", function( billetter ) {
         billetter.forEach((billett) => {
-            const billettHTML = "<li>" + billett.antall + " billett(er) for " + billett.film + " på navn: " + billett.fornavn + " " + billett.etternavn + " (" + billett.telefonnr + ", " + billett.epost + ")" + " <button class='slettBillett'>Slett</button></li>";
-
-            $("#kinobilletter").append(billettHTML);
+            let billettHTML = "<list>"
+            billettHTML += "<li>" + billett.antall + " billett(er) for " + billett.film + " på navn: " + billett.fornavn + " " + billett.etternavn + " (" + billett.telefonnr + ", " + billett.epost + ")" + " <button class='slettBillett'>Slett</button></li>";
+            billettHTML += "</list>"
+            $("#billetter").append(billettHTML);
         });
     });
 }

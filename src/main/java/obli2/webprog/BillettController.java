@@ -17,16 +17,16 @@ public class BillettController {
     BillettRepository repository;
 
 
-    @PostMapping("/kinobillett")
+    @PostMapping("/bestill")
     public void lagre(Kinobilletter kinobilletter){
      repository.leggInn(kinobilletter);
     }
-    @GetMapping("/kinobillett")
+    @GetMapping("/hentalle")
     public ArrayList<Kinobilletter> hent() {
      return repository.hentAlle();
     }
 
-    @DeleteMapping("/kinobillett")
+    @GetMapping("/slettalle")
    public void slett() {
  repository.slettAlle();
  }
