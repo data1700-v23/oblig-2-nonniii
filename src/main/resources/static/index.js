@@ -102,7 +102,7 @@ function hentAlle() {
     $.get( "/hentalle", function( billetter ) {
         billetter.forEach((billett) => {
             let billettHTML = "<list>"
-            billettHTML += "<li>" + billett.antall + " billett(er) for " + billett.film + " på navn: " + billett.fornavn + " " + billett.etternavn + " (" + billett.telefonnr + ", " + billett.epost + ")" + " <button class='slettBillett'>Slett</button></li>";
+            billettHTML += "<li>" + billett.antall + " billett(er) for " + billett.film + " på navn: " + billett.fornavn + " " + billett.etternavn + " (" + billett.telefonnr + ", " + billett.epost;
             billettHTML += "</list>"
             $("#billetter").append(billettHTML);
         });
