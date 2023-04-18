@@ -106,7 +106,7 @@ function hentAlle() {
     });
 });
 function slettAlle(){
-    $.post("/slettalle", function (){
+    $.get("/slettalle", function (){
         hentAlle();
 
     });
