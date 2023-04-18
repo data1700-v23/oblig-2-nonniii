@@ -72,7 +72,7 @@ $(() => {
 const bestill = (billett) => {
      $.post("/bestill", billett, () => bestillSuksess());
 
-}
+};
 
 const bestillSuksess = () => {
     console.log("bestill suksess is running")
@@ -91,7 +91,7 @@ function hentAlle() {
     $.get( "/hentalle", function( billetter ) {
         billetter.forEach((billett) => {
             let billettHTML = "<list>"
-            billettHTML += "<li>" + billett.antall + " billett(er) for " + billett.film + " på navn: " + billett.fornavn + " " + billett.etternavn + " (" + billett.telefonnr + ", "
+            billettHTML += "<li>" + billett.antall + " billett(er) for " + billett.film + " på navn: " + billett.fornavn + " " + billett.etternavn + " " + billett.telefonnr + ", "
                 + billett.epost + "</li>";
             billettHTML += "</list>"
             $("#billetter").html(billettHTML);
@@ -100,23 +100,6 @@ function hentAlle() {
     });
 }
 
-/*function slettAlle() {
-    $.get( "/hentalle", function( billetter ) {
-        billetter.forEach((billett) => {
-            let billettHTML = "<list>"
-            billettHTML += "<li>" + billett.antall + " billett(er) for " + billett.film + " på navn: " + billett.fornavn + " " + billett.etternavn + " (" + billett.telefonnr + ", "
-                + billett.epost + "</li>";
-            billettHTML += "</list>"
-            $("#billetter").html(billettHTML);
-            console.log(billettHTML)
-        });
-        $.post("/slettalle", function (){
-            hentAlle();
-        });
-    });
-}
-
- */
     // Legger til en klikk-handler for å slette alle billetter
     $("#slettAlle").click(() => {
         $("#billetter").empty();
