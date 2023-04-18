@@ -18,7 +18,7 @@ public class BillettController {
 
 
     @PostMapping("/bestill")
-    public void lagre(Kinobilletter kinobilletter){
+    public void lagre(Kinobilletter kinobilletter) {
      repository.leggInn(kinobilletter);
     }
     @GetMapping("/hentalle")

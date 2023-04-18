@@ -63,25 +63,15 @@ $(() => {
                 epost: epost
             };
 
-            bestill(billett)
+           bestill(billett)
         }
     });
 
-    // Legger til en klikk-handler for å slette alle billetter
-    $("#slettAller").click(() => {
-        $("#kinobilletter").empty();
-    });
-});
+
 
 const bestill = (billett) => {
      $.post("/bestill", billett, () => bestillSuksess());
-    /*$.ajax("/bestill", {
-        type:"POST",
-        data: billett,
-        contentType:"application/json; charset=utf-8",
-        dataType:"json",
-        success: () => bestillSuksess()
-    })*/
+
 }
 
 const bestillSuksess = () => {
@@ -89,10 +79,9 @@ const bestillSuksess = () => {
 
     hentAlle();
 
-    // Nullstiller feltene
     $("#film").val("Ant-Man");
     $("#antall").val("");
-    $("#fornavn").val("");
+    $("#fornavn").val("");            2
     $("#etternavn").val("");
     $("#telefonnr").val("");
     $("#epost").val("");
@@ -102,18 +91,52 @@ function hentAlle() {
     $.get( "/hentalle", function( billetter ) {
         billetter.forEach((billett) => {
             let billettHTML = "<list>"
-            billettHTML += "<li>" + billett.antall + " billett(er) for " + billett.film + " på navn: " + billett.fornavn + " " + billett.etternavn + " (" + billett.telefonnr + ", " + billett.epost;
+            billettHTML += "<li>" + billett.antall + " billett(er) for " + billett.film + " på navn: " + billett.fornavn + " " + billett.etternavn + " (" + billett.telefonnr + ", "
+                + billett.epost + "</li>";
             billettHTML += "</list>"
-            $("#billetter").append(billettHTML);
+            $("#billetter").html(billettHTML);
+            console.log(billettHTML)
         });
     });
 }
 
-function slettAlle(){
-    $.get("/slettalle", function (billetter){
-        hentAlle(); 
+/*function slettAlle() {
+    $.get( "/hentalle", function( billetter ) {
+        billetter.forEach((billett) => {
+            let billettHTML = "<list>"
+            billettHTML += "<li>" + billett.antall + " billett(er) for " + billett.film + " på navn: " + billett.fornavn + " " + billett.etternavn + " (" + billett.telefonnr + ", "
+                + billett.epost + "</li>";
+            billettHTML += "</list>"
+            $("#billetter").html(billettHTML);
+            console.log(billettHTML)
+        });
+        $.post("/slettalle", function (){
+            hentAlle();
+        });
     });
 }
+
+ */
+    // Legger til en klikk-handler for å slette alle billetter
+    $("#slettAlle").click(() => {
+        $("#billetter").empty();
+    });
+});
+function slettAlle(){
+    $.post("/slettalle", function (){
+        hentAlle();
+
+    });
+}
+
+
+
+
+
+
+
+
+
 
 
 
